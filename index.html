@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pro Quiz</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">Q</div>
+        <h1 class="title">Pro Quiz</h1>
+      </div>
+      <button
+        id="theme-toggle"
+        class="icon-btn"
+        aria-label="Toggle theme"
+        title="Toggle theme (T)"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm7 9a7 7 0 1 1-7-7 1 1 0 0 0 0 2 5 5 0 1 0 5 5 1 1 0 0 0 2 0zM4 13a1 1 0 1 1 0-2H5a1 1 0 1 1 0 2H4zm14.657-6.657a1 1 0 0 1 0 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM12 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zm7.071-2.071a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 1 1 1.414-1.414l.707.707zM6.343 5.343a1 1 0 0 1 1.414 0l.707.707A1 1 0 1 1 7.05 7.464l-.707-.707a1 1 0 0 1 0-1.414z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </header>
+
+    <main class="container">
+      <!-- Setup -->
+      <section id="setup-screen" class="card">
+        <h2>Game Settings</h2>
+        <form id="setup-form" class="grid">
+          <label class="field">
+            <span>Number of questions</span>
+            <select name="amount" required>
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Category</span>
+            <select name="category">
+              <option value="">Any</option>
+              <option value="9">General Knowledge</option>
+              <option value="18" selected>Science: Computers</option>
+              <option value="19">Science: Mathematics</option>
+              <option value="21">Sports</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Difficulty</span>
+            <select name="difficulty">
+              <option value="">Mixed</option>
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Seconds per question</span>
+            <select name="perQuestion">
+              <option value="15">15</option>
+              <option value="30" selected>30</option>
+              <option value="45">45</option>
+              <option value="60">60</option>
+            </select>
+          </label>
+
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">Start Quiz</button>
+          </div>
+        </form>
+        <p class="muted">
+          Tip: We use an OpenTDB session token to reduce duplicate questions
+          over time.
+        </p>
+      </section>
+
+      <!-- Quiz -->
+      <section id="quiz-screen" class="card hidden" aria-live="polite">
+        <div class="quiz-header">
+          <div id="progress-text" class="muted">Q 1 / 10</div>
+          <div class="timer">
+            <div
+              class="timer-circle"
+              id="timer-circle"
+              aria-label="Time remaining"
+              role="img"
+            >
+              <div class="timer-inner">
+                <span id="timer-label" class="timer-label">30s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="question-text" class="question" role="heading" aria-level="2">
+          ...
+        </h2>
+
+        <ul id="options" class="options" role="listbox" aria-label="Options">
+          <!-- options injected here -->
+        </ul>
+
+        <div class="actions">
+          <button id="submit-btn" class="btn btn-primary">Submit</button>
+          <button id="next-btn" class="btn btn-outline" disabled>Next</button>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section id="result-screen" class="card hidden">
+        <h2>Results</h2>
+        <p id="score-summary" class="score"></p>
+        <div id="review"></div>
+        <div class="actions">
+          <button id="download-btn" class="btn btn-outline">
+            Download CSV
+          </button>
+          <button id="restart-btn" class="btn">Play Again</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Loader -->
+    <div id="loader" class="loader hidden" role="status" aria-live="assertive">
+      <div class="spinner"></div>
+      <div>Fetching questions…</div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden" role="alert"></div>
+
+    <script src="./script.js" type="module"></script>
+  </body>
+</html>
