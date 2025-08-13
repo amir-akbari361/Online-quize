@@ -31,10 +31,10 @@ A modern, responsive, and accessible quiz application with a polished UI/UX, bui
 - Quiz Screen: `docs/quiz.png`  
 - Results Review: `docs/results.png`
 
-~~~markdown
-![Setup](docs/setup.png)
-![Quiz](docs/quiz.png)
-![Results](docs/results.png)
+markdown
+![Setup](docs/1.png)
+![Quiz](docs/2.png)
+![Results](docs/3.png)
 ~~~
 
 ---
